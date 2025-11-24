@@ -118,25 +118,18 @@
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- Language Toggle -->
-    <div class="fixed top-4 left-4 z-50">
-        <button id="langToggle" class="bg-black text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg flex items-center gap-2">
-            <span class="lang-en"><i class="fas fa-language"></i> العربية</span>
-            <span class="lang-ar hidden"><i class="fas fa-language"></i> English</span>
-        </button>
-    </div>
-
-        <!-- Navigation -->
+    <!-- Navigation -->
     <nav class="fixed w-full bg-white/95 backdrop-blur-sm z-40 shadow-sm">
         <div class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
             <!-- Logo/Brand -->
             <a href="#" class="text-xl sm:text-2xl font-bold flex items-center">
                 <div class="w-8 h-8 bg-black rounded-full mr-2"></div>
-                <span>عبدالرحمن أبجاو</span>
+                <span class="lang-ar">عبدالرحمن أبجاو</span>
+                <span class="lang-en hidden">Abdrrahman Abjaou</span>
             </a>
             
             <!-- Desktop Navigation -->
-            <div class="hidden md:flex space-x-6 space-x-reverse">
+            <div class="hidden md:flex space-x-6 space-x-reverse items-center">
                 <a href="#about" class="hover:text-gray-600 transition-colors font-medium lang-ar">عنّي</a>
                 <a href="#services" class="hover:text-gray-600 transition-colors font-medium lang-ar">خدماتي</a>
                 <a href="#portfolio" class="hover:text-gray-600 transition-colors font-medium lang-ar">معرض الأعمال</a>
@@ -146,29 +139,34 @@
                 <a href="#services" class="hover:text-gray-600 transition-colors font-medium lang-en hidden">Services</a>
                 <a href="#portfolio" class="hover:text-gray-600 transition-colors font-medium lang-en hidden">Portfolio</a>
                 <a href="#contact" class="hover:text-gray-600 transition-colors font-medium lang-en hidden">Contact</a>
+
+                <!-- Language Toggle for Desktop -->
+                <button id="langToggle" class="bg-black text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg flex items-center gap-2 mr-4">
+                    <span class="lang-en"><i class="fas fa-language"></i> العربية</span>
+                    <span class="lang-ar hidden"><i class="fas fa-language"></i> English</span>
+                </button>
             </div>
             
-            <!-- Right side controls -->
-            <div class="flex items-center space-x-4 space-x-reverse">
-                <!-- Language Toggle -->
-                <div class="md:mr-4">
-                    <button id="langToggle" class="bg-black text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg flex items-center gap-2">
-                        <span class="lang-en"><i class="fas fa-language"></i> العربية</span>
-                        <span class="lang-ar hidden"><i class="fas fa-language"></i> English</span>
-                    </button>
-                </div>
-                
+            <!-- Mobile Controls -->
+            <div class="flex items-center space-x-4 space-x-reverse md:hidden">
                 <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button id="mobileMenuButton" class="text-2xl">
-                        <i class="fas fa-bars"></i>
-                    </button>
-                </div>
+                <button id="mobileMenuButton" class="text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
             </div>
         </div>
         
         <!-- Mobile Menu -->
-        <div id="mobileMenu" class="md:hidden bg-white py-4 px-6 hidden shadow-lg absolute w-full">
+        <div id="mobileMenu" class="md:hidden bg-white py-4 px-6 hidden shadow-lg absolute w-full top-full left-0">
+            <!-- Mobile Language Toggle (moved inside menu) -->
+            <div class="flex justify-end mb-3">
+                <button id="langToggleMobile" class="bg-black text-white px-3 py-2 rounded-full text-sm font-medium shadow-lg flex items-center gap-1">
+                    <i class="fas fa-language text-xs"></i>
+                    <span class="lang-en">AR</span>
+                    <span class="lang-ar hidden">EN</span>
+                </button>
+            </div>
+
             <a href="#about" class="block py-3 hover:text-gray-600 border-b border-gray-100 lang-ar">عنّي</a>
             <a href="#services" class="block py-3 hover:text-gray-600 border-b border-gray-100 lang-ar">خدماتي</a>
             <a href="#portfolio" class="block py-3 hover:text-gray-600 border-b border-gray-100 lang-ar">معرض الأعمال</a>
@@ -517,8 +515,8 @@
     </footer>
 
     <script>
-        // Language Toggle
-        document.getElementById('langToggle').addEventListener('click', function() {
+        // Language Toggle Function
+        function toggleLanguage() {
             const arabicElements = document.querySelectorAll('.lang-ar');
             const englishElements = document.querySelectorAll('.lang-en');
             
@@ -538,7 +536,13 @@
                 document.documentElement.dir = 'rtl';
                 document.documentElement.lang = 'ar';
             }
-        });
+        }
+
+        // Language Toggle for Desktop
+        document.getElementById('langToggle').addEventListener('click', toggleLanguage);
+        
+        // Language Toggle for Mobile
+        document.getElementById('langToggleMobile').addEventListener('click', toggleLanguage);
         
         // Mobile Menu Toggle
         document.getElementById('mobileMenuButton').addEventListener('click', function() {
@@ -592,7 +596,10 @@
         // Form submission
         document.querySelector('form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your message! I will get back to you soon.');
+            const message = document.documentElement.lang === 'ar' 
+                ? 'شكراً على رسالتك! سأتواصل معك قريباً.' 
+                : 'Thank you for your message! I will get back to you soon.';
+            alert(message);
             this.reset();
         });
     </script>

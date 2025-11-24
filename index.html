@@ -126,13 +126,16 @@
         </button>
     </div>
 
-    <!-- Navigation -->
+        <!-- Navigation -->
     <nav class="fixed w-full bg-white/95 backdrop-blur-sm z-40 shadow-sm">
         <div class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+            <!-- Logo/Brand -->
             <a href="#" class="text-xl sm:text-2xl font-bold flex items-center">
                 <div class="w-8 h-8 bg-black rounded-full mr-2"></div>
-               <span>Abdrrahman Abjaou</span>
+                <span>عبدالرحمن أبجاو</span>
             </a>
+            
+            <!-- Desktop Navigation -->
             <div class="hidden md:flex space-x-6 space-x-reverse">
                 <a href="#about" class="hover:text-gray-600 transition-colors font-medium lang-ar">عنّي</a>
                 <a href="#services" class="hover:text-gray-600 transition-colors font-medium lang-ar">خدماتي</a>
@@ -144,10 +147,23 @@
                 <a href="#portfolio" class="hover:text-gray-600 transition-colors font-medium lang-en hidden">Portfolio</a>
                 <a href="#contact" class="hover:text-gray-600 transition-colors font-medium lang-en hidden">Contact</a>
             </div>
-            <div class="md:hidden">
-                <button id="mobileMenuButton" class="text-2xl">
-                    <i class="fas fa-bars"></i>
-                </button>
+            
+            <!-- Right side controls -->
+            <div class="flex items-center space-x-4 space-x-reverse">
+                <!-- Language Toggle -->
+                <div class="md:mr-4">
+                    <button id="langToggle" class="bg-black text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg flex items-center gap-2">
+                        <span class="lang-en"><i class="fas fa-language"></i> العربية</span>
+                        <span class="lang-ar hidden"><i class="fas fa-language"></i> English</span>
+                    </button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobileMenuButton" class="text-2xl">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
             </div>
         </div>
         
